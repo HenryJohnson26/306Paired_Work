@@ -81,4 +81,17 @@ private void coolDown() {
 	}
 }
 
+public void printStatus() {
+	//print setting 
+	switch(mySetting) {
+	case OFF: System.out.print("(---)");
+	case LOW: System.out.print("(--+)");
+	}
+	//pring temperature
+	switch(myTemperature) {
+	case COLD: System.out.println(" Cool");
+	case WARM: System.out.println(" Warm");
+	}
+}
+
 }
