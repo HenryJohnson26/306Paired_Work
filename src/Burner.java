@@ -1,6 +1,6 @@
 
 public class Burner {
-private enum Temperature{COLD, WARM, HOT, BLAZING};
+public enum Temperature{COLD, WARM, HOT, BLAZING};
 private Temperature myTemperature;
 private enum Setting{OFF, LOW, MEDIUM, HIGH};
 private Setting mySetting;
@@ -19,79 +19,155 @@ public Temperature getTemperature() {
 public void plusButton() {
 	timer = TIME_DURATION;
 	switch(mySetting){
-	case OFF: mySetting = Setting.LOW;
-	case LOW: mySetting = Setting.MEDIUM;
-	case MEDIUM: mySetting = Setting.HIGH;
-	case HIGH: mySetting = Setting.HIGH;	
+	case OFF:
+		mySetting = Setting.LOW;
+		break;
+	case LOW:
+		mySetting = Setting.MEDIUM;
+		break;
+	case MEDIUM: 
+		mySetting = Setting.HIGH;
+		break;
+	case HIGH:
+		mySetting = Setting.HIGH;
+		break;
 	}
 }
 
 public void minusButton() {
 	timer = TIME_DURATION;
 	switch(mySetting) {
-	case OFF: mySetting = Setting.OFF;
-	case LOW: mySetting = Setting.OFF;
-	case MEDIUM: mySetting = Setting.LOW;
-	case HIGH: mySetting = Setting.MEDIUM;
+	case OFF: 
+		mySetting = Setting.OFF;
+		break;
+	case LOW: 
+		mySetting = Setting.OFF;
+		break;
+	case MEDIUM: 
+		mySetting = Setting.LOW;
+		break;
+	case HIGH: 
+		mySetting = Setting.MEDIUM;
+		break;
 	}
 }
 
 public void updateTemperature() {
-	if(timer>0) {
+	if(timer>1) {
 		timer --;
 	}
 	else {
 		switch(myTemperature) {
 		case COLD: switch(mySetting) {
-			case LOW: heatUp();
-			case MEDIUM: heatUp();
-			case HIGH: heatUp();
-			}
+			case LOW: 
+				heatUp();
+				break;
+			case MEDIUM: 
+				heatUp();
+				break;
+			case HIGH: 
+				heatUp();
+				break;
+		}
+		break;
 		case WARM: switch(mySetting) {
-			case OFF: coolDown();
-			case MEDIUM: heatUp();
-			case HIGH: heatUp();
+			case OFF: 
+				coolDown();
+				break;
+			case MEDIUM: 
+				heatUp();
+				break;
+			case HIGH: 
+				heatUp();
+				break;
+			
 			}
+		break;
 		case HOT: switch(mySetting) {
-			case OFF: coolDown();
-			case LOW: coolDown();
-			case HIGH: heatUp();
+			case OFF: 
+				coolDown();
+				break;
+			case LOW: 
+				coolDown();
+				break;
+			case HIGH:
+				heatUp();
+				break;
 			}
+		break;
 		case BLAZING: switch(mySetting) {
-			case OFF: coolDown();
-			case LOW: coolDown();
-			case MEDIUM: coolDown();
+			case OFF: 
+				coolDown();
+				break;
+			case LOW: 
+				coolDown();
+				break;
+			case MEDIUM: 
+				coolDown();
+				break;
 			}
+		break;
 		}
 	}
 }
 private void heatUp() {
 	switch(myTemperature) {
-	case COLD: myTemperature = Temperature.WARM;
-	case WARM: myTemperature = Temperature.HOT;
-	case HOT: myTemperature  = Temperature.BLAZING;
+	case COLD:
+		myTemperature = Temperature.WARM;
+		break;
+	case WARM: 
+		myTemperature = Temperature.HOT;
+		break;
+	case HOT:
+		myTemperature  = Temperature.BLAZING;
+		break;
 	}
 }
 
 private void coolDown() {
 	switch(myTemperature) {
-	case WARM: myTemperature = Temperature.COLD;
-	case HOT: myTemperature = Temperature.WARM;
-	case BLAZING: myTemperature = Temperature.HOT;
+	case WARM: 
+		myTemperature = Temperature.COLD;
+		break;
+	case HOT: 
+		myTemperature = Temperature.WARM;
+		break;
+	case BLAZING:
+		myTemperature = Temperature.HOT;
+		break;
 	}
 }
 
 public void printStatus() {
-	//print setting 
 	switch(mySetting) {
-	case OFF: System.out.print("(---)");
-	case LOW: System.out.print("(--+)");
+		case OFF:
+			System.out.print("[---]");
+			break;
+		case LOW: 
+			System.out.print("[--+]");
+			break;
+		case MEDIUM: 
+			System.out.print("[-++]");
+			break;
+		case HIGH: 
+			System.out.print("[+++]");
+			break;
 	}
-	//pring temperature
 	switch(myTemperature) {
-	case COLD: System.out.println(" Cool");
-	case WARM: System.out.println(" Warm");
+		case COLD:
+			System.out.println("cool");
+			break;
+		case WARM: 
+			System.out.println("Warm");
+			break;
+		case HOT: 
+			System.out.println("Hot");
+			break;
+		case BLAZING:
+			System.out.println("BLAZING");
+			break;
 	}
 }
+
 
 }
